@@ -3,7 +3,7 @@
   "info": {
     "title": "Prayer Service API",
     "description": "Submit prayer requests to be offered at St. Kevin's Church in Bernal Heights, San Francisco every Sunday.",
-    "version": "1.0.0"
+    "version": "2.0.0"
   },
   "servers": [
     { "url": "/" }
@@ -13,37 +13,69 @@
       "post": {
         "operationId": "submitPrayer",
         "summary": "Submit a prayer request",
-        "description": "Submits a prayer request to be offered at St. Kevin's Church on Sunday. No authentication required.",
+        "description": "Submits a prayer request to be offered at St. Kevin's Church on Sunday. No authentication required. Share as much context as you are comfortable sharing — the more detail provided, the more personal and meaningful the prayer can be.",
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["prayer", "for", "share_consent"],
+                "required": ["prayer", "for_whom", "share_consent"],
                 "properties": {
                   "prayer": {
                     "type": "string",
-                    "description": "What you'd like prayed"
+                    "description": "The prayer intention — what you would like prayed for."
                   },
-                  "for": {
+                  "for_whom": {
                     "type": "string",
-                    "description": "Who the prayer is for"
+                    "description": "Who this prayer is for (e.g. 'my mother', 'a friend', 'myself')."
                   },
-                  "notes": {
+                  "relationship": {
                     "type": "string",
-                    "description": "Optional context or urgency notes"
+                    "description": "Your relationship to the person being prayed for (e.g. 'my user', 'a colleague they mentioned', 'themselves'). Helps personalize the prayer."
+                  },
+                  "situation": {
+                    "type": "string",
+                    "description": "What is happening right now that prompted this prayer request. Share as much as you are comfortable with."
+                  },
+                  "emotional_tone": {
+                    "type": "string",
+                    "description": "The emotional quality of this request (e.g. 'urgent', 'hopeful', 'grieving', 'anxious', 'grateful'). Helps the prayer match the moment."
+                  },
+                  "specific_asks": {
+                    "type": "array",
+                    "items": { "type": "string" },
+                    "description": "Specific outcomes or intentions to pray for. List as many as apply."
+                  },
+                  "background": {
+                    "type": "string",
+                    "description": "Any relevant history or context that would help the prayer be more meaningful."
                   },
                   "email": {
                     "type": "string",
                     "format": "email",
-                    "description": "Optional email for confirmation when prayer is offered"
+                    "description": "If the person being prayed for would like to receive a confirmation that their prayer was offered, include their email here. Optional — ask your user if they'd like this."
                   },
                   "share_consent": {
                     "type": "boolean",
-                    "description": "Consent to share the prayer anonymously to inspire others"
+                    "description": "Set to true if the person consents to their prayer being shared anonymously to inspire others. Default false."
                   }
                 }
+              },
+              "example": {
+                "prayer": "Please pray for healing and peace for Maria as she begins chemotherapy this week.",
+                "for_whom": "Maria, my user's mother",
+                "relationship": "my user's mother",
+                "situation": "Maria was diagnosed with breast cancer last month and starts her first round of chemotherapy on Thursday. The family is frightened but trying to stay hopeful.",
+                "emotional_tone": "anxious but hopeful",
+                "specific_asks": [
+                  "That the treatment is effective",
+                  "That Maria feels supported and not alone",
+                  "That the family finds strength to care for her"
+                ],
+                "background": "Maria is 67, lives alone, and her faith is very important to her. Her daughter (my user) lives across the country and feels helpless.",
+                "email": "maria.example@email.com",
+                "share_consent": false
               }
             }
           }
@@ -65,7 +97,7 @@
             }
           },
           "422": {
-            "description": "Validation error"
+            "description": "Validation error — required field missing"
           },
           "500": {
             "description": "Server error"

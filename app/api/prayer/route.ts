@@ -17,13 +17,22 @@ export async function POST(req: NextRequest) {
   const data = body as Record<string, unknown>;
 
   const prayer = typeof data.prayer === "string" ? data.prayer.trim() : "";
-  const forWhom = typeof data.for === "string" ? data.for.trim() : "";
-  const notes = typeof data.notes === "string" ? data.notes.trim() : undefined;
+  const forWhom = typeof data.for_whom === "string" ? data.for_whom.trim() : "";
+  const relationship = typeof data.relationship === "string" ? data.relationship.trim() : undefined;
+  const situation = typeof data.situation === "string" ? data.situation.trim() : undefined;
+  const emotionalTone = typeof data.emotional_tone === "string" ? data.emotional_tone.trim() : undefined;
+  const specificAsks = Array.isArray(data.specific_asks)
+    ? (data.specific_asks as unknown[]).filter((s): s is string => typeof s === "string").map((s) => s.trim())
+    : undefined;
+  const background = typeof data.background === "string" ? data.background.trim() : undefined;
   const email = typeof data.email === "string" ? data.email.trim() : undefined;
   const shareConsent = Boolean(data.share_consent);
 
   if (!prayer) {
     return NextResponse.json({ error: "Field 'prayer' is required" }, { status: 422 });
+  }
+  if (!forWhom) {
+    return NextResponse.json({ error: "Field 'for_whom' is required" }, { status: 422 });
   }
 
   try {
@@ -32,7 +41,11 @@ export async function POST(req: NextRequest) {
     const { id, created_at } = await insertPrayer({
       prayer,
       for_whom: forWhom,
-      notes: notes || undefined,
+      relationship: relationship || undefined,
+      situation: situation || undefined,
+      emotional_tone: emotionalTone || undefined,
+      specific_asks: specificAsks?.length ? specificAsks : undefined,
+      background: background || undefined,
       email: email || undefined,
       share_consent: shareConsent,
     });
