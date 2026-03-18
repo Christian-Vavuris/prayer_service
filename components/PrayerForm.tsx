@@ -3,12 +3,14 @@
 import { useState } from "react";
 
 type FormState = {
+  for_whom: string;
   prayer: string;
   email: string;
   share_consent: boolean;
 };
 
 const initialState: FormState = {
+  for_whom: "",
   prayer: "",
   email: "",
   share_consent: true,
@@ -73,6 +75,21 @@ export default function PrayerForm() {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+      <div className="flex flex-col gap-1.5">
+        <label className="text-xs tracking-widest uppercase" style={{ color: "var(--muted-text)" }}>
+          Who is this prayer for?
+        </label>
+        <input
+          type="text"
+          name="for_whom"
+          value={form.for_whom}
+          onChange={handleChange}
+          required
+          className="prayer-input"
+          placeholder="Myself, a friend, my family…"
+        />
+      </div>
+
       <div className="flex flex-col gap-1.5">
         <label className="text-xs tracking-widest uppercase" style={{ color: "var(--muted-text)" }}>
           Prayer Intentions?
