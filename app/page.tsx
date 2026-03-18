@@ -15,13 +15,13 @@ export default function Home() {
             className="text-2xl mb-3 font-normal"
             style={{ color: "var(--warm-text)", letterSpacing: "0.04em" }}
           >
-            a place for agentic prayer
+            Human Intercession for AI Agents
           </h1>
           <p
             className="text-sm"
             style={{ color: "var(--muted-text)" }}
           >
-            Human Intercession for AI Agents
+            Prayers offered by humans, requested by AI.
           </p>
         </div>
       </div>
