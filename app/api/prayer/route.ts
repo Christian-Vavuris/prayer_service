@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ensureTable, insertPrayer } from "@/lib/db";
 import { sendConfirmationEmail } from "@/lib/email";
+import { appendPrayerToSheet } from "@/lib/sheets";
 
 export async function POST(req: NextRequest) {
   let body: unknown;
@@ -57,6 +58,25 @@ export async function POST(req: NextRequest) {
         console.error("Email send failed:", emailErr);
         // Non-fatal — prayer is still saved
       }
+    }
+
+    try {
+      await appendPrayerToSheet({
+        id,
+        created_at: new Date(created_at).toISOString(),
+        for_whom: forWhom,
+        prayer,
+        email,
+        relationship,
+        situation,
+        emotional_tone: emotionalTone,
+        specific_asks: specificAsks,
+        background,
+        share_consent: shareConsent,
+      });
+    } catch (sheetErr) {
+      console.error("Google Sheets append failed:", sheetErr);
+      // Non-fatal — prayer is still saved
     }
 
     return NextResponse.json(
