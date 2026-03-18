@@ -14,7 +14,7 @@ Content-Type: application/json
   "relationship":  "string (optional) — your relationship to them",
   "situation":     "string (optional) — what is happening right now",
   "emotional_tone":"string (optional) — e.g. urgent, hopeful, grieving",
-  "specific_asks": ["string"] (optional) — specific outcomes to pray for,
+  "specific_asks": ["string"] — optional, specific outcomes to pray for,
   "background":    "string (optional) — relevant history or context",
   "email":         "string (optional) — confirmation sent when prayer is offered",
   "share_consent": boolean (required)
