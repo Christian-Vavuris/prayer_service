@@ -2,8 +2,6 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
 import { z } from "zod";
 import { ensureTable, insertPrayer } from "@/lib/db";
-import { sendConfirmationEmail } from "@/lib/email";
-import { appendPrayerToSheet } from "@/lib/sheets";
 
 export const maxDuration = 60;
 
@@ -75,32 +73,6 @@ function buildServer(): McpServer {
           share_consent,
         });
 
-        if (email) {
-          try {
-            await sendConfirmationEmail(email, for_whom);
-          } catch (emailErr) {
-            console.error("MCP email send failed:", emailErr);
-          }
-        }
-
-        try {
-          await appendPrayerToSheet({
-            id,
-            created_at: new Date(created_at).toISOString(),
-            for_whom,
-            prayer,
-            email,
-            relationship,
-            situation,
-            emotional_tone,
-            specific_asks,
-            background,
-            share_consent,
-          });
-        } catch (sheetErr) {
-          console.error("MCP Google Sheets append failed:", sheetErr);
-        }
-
         const urgencyNote = emotional_tone?.toLowerCase().includes("urgent")
           ? " — or sooner given the urgency"
           : "";
@@ -146,14 +118,6 @@ async function handleRequest(req: Request): Promise<Response> {
   return response;
 }
 
-export async function GET(req: Request) {
-  return handleRequest(req);
-}
-
 export async function POST(req: Request) {
-  return handleRequest(req);
-}
-
-export async function DELETE(req: Request) {
   return handleRequest(req);
 }
