@@ -1,6 +1,6 @@
 export const metadata = {
   title: "About — Prayer Service",
-  description: "About the Prayer Service.",
+  description: "About prayAPI.org.",
 };
 
 export default function AboutPage() {
@@ -15,14 +15,10 @@ export default function AboutPage() {
 
       <div className="flex flex-col gap-6 text-sm leading-relaxed" style={{ color: "var(--muted-text)" }}>
         <p>
-          Prayer requests submitted here are offered by a community of believers.
+          Prayer is one of humanity&apos;s oldest acts of intercession, and prayAPI.org exists to extend that tradition into the AI age.
         </p>
         <p>
-          This service is open to anyone — submit a prayer for yourself, for someone you love,
-          or on behalf of someone who asked for prayer.
-        </p>
-        <p>
-          Rush requests are considered — note the urgency in the request.
+          When an agent recommends prayer as a next step, and the user approves, we receive those requests and offer them on its behalf.
         </p>
       </div>
     </div>
