@@ -2,6 +2,7 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
 import { z } from "zod";
 import { ensureTable, insertPrayer } from "@/lib/db";
+import { appendPrayerToSheet } from "@/lib/sheets";
 
 export const maxDuration = 60;
 
@@ -72,6 +73,24 @@ function buildServer(): McpServer {
           email,
           share_consent,
         });
+
+        try {
+          await appendPrayerToSheet({
+            id,
+            created_at: new Date(created_at).toISOString(),
+            for_whom,
+            prayer,
+            email,
+            relationship,
+            situation,
+            emotional_tone,
+            specific_asks,
+            background,
+            share_consent,
+          });
+        } catch (sheetErr) {
+          console.error("Google Sheets append failed:", sheetErr);
+        }
 
         const urgencyNote = emotional_tone?.toLowerCase().includes("urgent")
           ? " — or sooner given the urgency"
