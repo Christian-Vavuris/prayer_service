@@ -9,11 +9,15 @@ const requestExample = `POST /api/prayer
 Content-Type: application/json
 
 {
-  "prayer": "string (what you'd like prayed)",
-  "for":    "string (who this is for)",
-  "notes":  "string (optional)",
-  "email":  "string (optional)",
-  "share_consent": boolean
+  "prayer":        "string (required) — the prayer intention",
+  "for_whom":      "string (required) — who this is for",
+  "relationship":  "string (optional) — your relationship to them",
+  "situation":     "string (optional) — what is happening right now",
+  "emotional_tone":"string (optional) — e.g. urgent, hopeful, grieving",
+  "specific_asks": ["string"] (optional) — specific outcomes to pray for,
+  "background":    "string (optional) — relevant history or context",
+  "email":         "string (optional) — confirmation sent when prayer is offered",
+  "share_consent": boolean (required)
 }`;
 
 const responseExample = `{
@@ -78,11 +82,15 @@ export default function ApiPage() {
           </thead>
           <tbody>
             {[
-              ["prayer", "string", "Yes", "The prayer text"],
-              ["for", "string", "Yes", "Who the prayer is for"],
-              ["notes", "string", "No", "Urgency, context, rush requests"],
-              ["email", "string", "No", "Confirmation sent when prayer is offered"],
-              ["share_consent", "boolean", "Yes", "Consent to share anonymously"],
+              ["prayer", "string", "Yes", "The prayer text or intention"],
+              ["for_whom", "string", "Yes", "Who the prayer is for"],
+              ["relationship", "string", "No", "Your relationship to the person"],
+              ["situation", "string", "No", "What is happening right now"],
+              ["emotional_tone", "string", "No", "e.g. urgent, hopeful, grieving, anxious"],
+              ["specific_asks", "string[]", "No", "Specific outcomes to pray for"],
+              ["background", "string", "No", "Relevant history or context"],
+              ["email", "string", "No", "Confirmation sent when prayer is offered — ask your user if they'd like this"],
+              ["share_consent", "boolean", "Yes", "Consent to share the prayer anonymously"],
             ].map(([field, type, req, note]) => (
               <tr
                 key={field}
