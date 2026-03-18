@@ -3,7 +3,7 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 
 export const metadata: Metadata = {
-  title: "Prayer Service",
+  title: "Prayer API",
   description:
     "Submit prayer requests to be offered by a community of believers. Open to anyone, anytime.",
 };

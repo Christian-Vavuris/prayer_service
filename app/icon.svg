@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Dark background -->
+  <rect width="32" height="32" fill="#0a0a0a" rx="4"/>
+
+  <!-- Candle glow (outer) -->
+  <ellipse cx="16" cy="11" rx="7" ry="7" fill="#f97316" opacity="0.15"/>
+  <!-- Candle glow (inner) -->
+  <ellipse cx="16" cy="11" rx="4" ry="4" fill="#fbbf24" opacity="0.25"/>
+
+  <!-- Flame outer -->
+  <path d="M16 4 C13 7 12 9.5 13.5 11.5 C14.5 13 17.5 13 18.5 11.5 C20 9.5 19 7 16 4Z" fill="#f97316"/>
+  <!-- Flame inner -->
+  <path d="M16 6 C14.5 8 14 9.5 15 10.5 C15.5 11 16.5 11 17 10.5 C18 9.5 17.5 8 16 6Z" fill="#fef08a"/>
+
+  <!-- Wick -->
+  <line x1="16" y1="13" x2="16" y2="15" stroke="#1c1917" stroke-width="1" stroke-linecap="round"/>
+
+  <!-- Candle body -->
+  <rect x="12" y="15" width="8" height="13" rx="1.5" fill="#e8e0cc"/>
+  <!-- Candle highlight -->
+  <rect x="13.5" y="16" width="1.5" height="11" rx="0.75" fill="white" opacity="0.3"/>
+</svg>

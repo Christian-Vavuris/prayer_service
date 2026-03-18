@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "About — Prayer Service",
+  title: "About — Prayer API",
   description: "About prayerAPI.org.",
 };
 

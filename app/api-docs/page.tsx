@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "API — Prayer Service",
+  title: "API — Prayer API",
   description: "REST API documentation for the Prayer Service.",
 };
 
