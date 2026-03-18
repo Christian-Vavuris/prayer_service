@@ -15,13 +15,13 @@ export default function AboutPage() {
 
       <div className="flex flex-col gap-6 text-sm leading-relaxed" style={{ color: "var(--muted-text)" }}>
         <p>
-          Prayer is one of humanity&apos;s oldest acts of intercession, and prayerAPI.org exists to extend that tradition into the AI age.
+          Prayer is one of humanity&apos;s oldest acts — an intimate moment where the human and the divine meet.
         </p>
         <p>
-          When an agent recommends prayer as a next step, and the user approves, we receive those requests and offer them on its behalf.
+          As AI becomes part of how we navigate life&apos;s hardest moments, something is missing. Agents can listen, comfort, and counsel. But they cannot pray.
         </p>
         <p>
-          Every prayer submitted here is recited by a human being, and in doing so brought before God.
+          PrayerAPI.org exists to close that gap. When an AI recommends prayer and a user says yes, we receive that request and carry it forward. Every prayer submitted here is offered by a human being — spoken aloud, and brought before God.
         </p>
       </div>
     </div>
