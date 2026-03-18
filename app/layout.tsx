@@ -3,9 +3,9 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 
 export const metadata: Metadata = {
-  title: "Prayer Service — St. Kevin's Church",
+  title: "Prayer Service",
   description:
-    "Submit prayer requests for St. Kevin's Church in Bernal Heights, San Francisco. Prayers are offered every Sunday.",
+    "Submit prayer requests to be offered by a community of believers. Open to anyone, anytime.",
 };
 
 export default function RootLayout({

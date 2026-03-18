@@ -1,6 +1,6 @@
 export const metadata = {
   title: "About — Prayer Service",
-  description: "About the Prayer Service at St. Kevin's Church.",
+  description: "About the Prayer Service.",
 };
 
 export default function AboutPage() {
@@ -15,9 +15,11 @@ export default function AboutPage() {
 
       <div className="flex flex-col gap-6 text-sm leading-relaxed" style={{ color: "var(--muted-text)" }}>
         <p>
-          Prayers are offered every Sunday at{" "}
-          <span style={{ color: "var(--warm-text)" }}>St. Kevin&apos;s Church</span>,
-          Bernal Heights, San Francisco.
+          Prayer requests submitted here are offered by a community of believers.
+        </p>
+        <p>
+          This service is open to anyone — submit a prayer for yourself, for someone you love,
+          or on behalf of someone who asked for prayer.
         </p>
         <p>
           Rush requests are considered — note the urgency in the request.
