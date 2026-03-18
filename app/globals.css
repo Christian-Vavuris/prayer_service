@@ -14,7 +14,7 @@
 body {
   background-color: var(--bg);
   color: var(--warm-text);
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--font-cormorant), Georgia, serif;
 }
 
 /* Candle animation */
@@ -113,7 +113,7 @@ body {
   padding: 0.6rem 0.8rem;
   width: 100%;
   transition: border-color 0.2s;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--font-cormorant), Georgia, serif;
   font-size: 0.95rem;
 }
 
@@ -134,7 +134,7 @@ body {
   padding: 0.65rem 2rem;
   border-radius: 4px;
   cursor: pointer;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--font-cormorant), Georgia, serif;
   font-size: 0.95rem;
   letter-spacing: 0.05em;
   transition: background 0.2s, border-color 0.2s;
