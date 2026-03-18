@@ -31,6 +31,12 @@ export default function Home() {
         className="border-t pt-10 pb-16"
         style={{ borderColor: "rgba(201, 184, 154, 0.1)" }}
       >
+        <h2
+          className="text-xl font-normal mb-8"
+          style={{ color: "var(--warm-text)", letterSpacing: "0.04em" }}
+        >
+          Submit a Prayer
+        </h2>
         <PrayerForm />
       </div>
     </div>
