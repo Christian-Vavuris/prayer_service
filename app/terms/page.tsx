@@ -136,10 +136,10 @@ export default function TermsPage() {
           </h2>
           <p className="text-sm leading-relaxed" style={{ color: "var(--muted-text)" }}>
             <a
-              href="mailto:hello@prayerapi.org"
+              href="mailto:contact@prayerapi.org"
               style={{ color: "var(--warm-text)", textDecoration: "none" }}
             >
-              hello@prayerapi.org
+              contact@prayerapi.org
             </a>
           </p>
         </section>
