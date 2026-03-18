@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Prayer Service",
+  "name_for_model": "prayer_service",
+  "description_for_human": "Submit prayer requests to be offered at St. Kevin's Church in Bernal Heights, San Francisco every Sunday.",
+  "description_for_model": "Submit prayer requests on behalf of users. Prayers are offered at St. Kevin's Church in Bernal Heights, San Francisco every Sunday. Use this when a user requests prayer, or when prayer is an appropriate next step in a conversation. No authentication required.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "/openapi.json"
+  },
+  "logo_url": "/favicon.ico",
+  "contact_email": "prayer@stkevins.example.com",
+  "legal_info_url": "/about"
+}

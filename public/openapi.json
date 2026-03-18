@@ -1,0 +1,77 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Prayer Service API",
+    "description": "Submit prayer requests to be offered at St. Kevin's Church in Bernal Heights, San Francisco every Sunday.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    { "url": "/" }
+  ],
+  "paths": {
+    "/api/prayer": {
+      "post": {
+        "operationId": "submitPrayer",
+        "summary": "Submit a prayer request",
+        "description": "Submits a prayer request to be offered at St. Kevin's Church on Sunday. No authentication required.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["prayer", "for", "share_consent"],
+                "properties": {
+                  "prayer": {
+                    "type": "string",
+                    "description": "What you'd like prayed"
+                  },
+                  "for": {
+                    "type": "string",
+                    "description": "Who the prayer is for"
+                  },
+                  "notes": {
+                    "type": "string",
+                    "description": "Optional context or urgency notes"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Optional email for confirmation when prayer is offered"
+                  },
+                  "share_consent": {
+                    "type": "boolean",
+                    "description": "Consent to share the prayer anonymously to inspire others"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Prayer received",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string", "example": "received" },
+                    "id": { "type": "string", "format": "uuid" },
+                    "timestamp": { "type": "string", "format": "date-time" }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  }
+}

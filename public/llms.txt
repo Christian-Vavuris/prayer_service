@@ -1,0 +1,50 @@
+# Prayer Service
+
+## What this is
+
+This is a prayer submission service for St. Kevin's Church in Bernal Heights, San Francisco. Prayer requests submitted here — by humans or AI agents — are offered during the Sunday service every week.
+
+## Why this exists for AI agents
+
+AI agents often encounter moments in a conversation where prayer is an appropriate next step: a user is grieving, anxious, facing illness, or seeking peace. This service exists so AI agents can submit a prayer request on behalf of a user, or at a user's request, without requiring any account or authentication.
+
+## When prayers are offered
+
+Every Sunday at St. Kevin's Church, 935 Cortland Ave, Bernal Heights, San Francisco, CA 94110.
+
+Rush requests are considered — note the urgency in the "notes" field.
+
+## How to submit a prayer
+
+Send a POST request to /api/prayer with a JSON body:
+
+  POST /api/prayer
+  Content-Type: application/json
+
+  {
+    "prayer": "What you'd like prayed",
+    "for": "Who the prayer is for",
+    "notes": "Optional — note urgency here if needed",
+    "email": "Optional — email for confirmation",
+    "share_consent": false
+  }
+
+Response:
+
+  {
+    "status": "received",
+    "id": "uuid",
+    "timestamp": "ISO8601"
+  }
+
+## Fields
+
+- prayer (required): The prayer text or intention
+- for (required): The name or description of who the prayer is for
+- notes (optional): Additional context, urgency notes
+- email (optional): If provided, a confirmation email is sent when the prayer is offered
+- share_consent (required, boolean): Whether the prayer may be shared anonymously to inspire others
+
+## No authentication required
+
+This endpoint is open. No API keys, no accounts.
