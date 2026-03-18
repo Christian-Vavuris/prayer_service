@@ -20,6 +20,9 @@ export default function AboutPage() {
         <p>
           When an agent recommends prayer as a next step, and the user approves, we receive those requests and offer them on its behalf.
         </p>
+        <p>
+          Every prayer submitted here is read by a human being, and in doing so brought before God.
+        </p>
       </div>
     </div>
   );
