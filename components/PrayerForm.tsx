@@ -60,9 +60,6 @@ export default function PrayerForm() {
     return (
       <div className="text-center py-10" style={{ color: "var(--warm-text)" }}>
         <p className="text-lg mb-2">Your prayer has been received.</p>
-        <p className="text-sm" style={{ color: "var(--muted-text)" }}>
-          It will be offered at St. Kevin&apos;s Church this Sunday.
-        </p>
         <button
           className="submit-btn mt-8"
           onClick={() => setStatus("idle")}
