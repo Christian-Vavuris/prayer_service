@@ -13,14 +13,11 @@ export default function Nav() {
   const pathname = usePathname();
 
   return (
-    <header
-      className="border-b"
-      style={{ borderColor: "rgba(201, 184, 154, 0.12)" }}
-    >
+    <header>
       <div className="max-w-2xl mx-auto px-6 py-5 flex items-center justify-between">
         <span
           className="text-sm tracking-widest uppercase"
-          style={{ color: "rgba(201, 184, 154, 0.45)", letterSpacing: "0.18em" }}
+          style={{ color: "rgba(201, 184, 154, 0.25)", letterSpacing: "0.18em" }}
         >
           PrayerAPI.org
         </span>
