@@ -116,7 +116,7 @@ export default function PrayerForm() {
 
       <div className="flex flex-col gap-1.5">
         <label className="text-xs tracking-widest uppercase" style={{ color: "var(--muted-text)" }}>
-          Prayer Intentions?
+          Prayer Intentions
         </label>
         <textarea
           name="prayer"
