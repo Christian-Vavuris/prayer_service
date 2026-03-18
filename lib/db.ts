@@ -40,7 +40,7 @@ export async function insertPrayer(data: {
       ${data.relationship ?? null},
       ${data.situation ?? null},
       ${data.emotional_tone ?? null},
-      ${data.specific_asks ? JSON.stringify(data.specific_asks) : null},
+      ${data.specific_asks ? `{${data.specific_asks.map(s => `"${s.replace(/"/g, '\\"')}"`).join(',')}}` : null},
       ${data.background ?? null},
       ${data.email ?? null},
       ${data.share_consent}
