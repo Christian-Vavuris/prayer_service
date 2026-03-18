@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { Turnstile, TurnstileInstance } from "@marsidev/react-turnstile";
 
 type FormState = {
   for_whom: string;
@@ -16,10 +17,15 @@ const initialState: FormState = {
   share_consent: true,
 };
 
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+
 export default function PrayerForm() {
   const [form, setForm] = useState<FormState>(initialState);
+  const [honeypot, setHoneypot] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const turnstileRef = useRef<TurnstileInstance>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -40,7 +46,11 @@ export default function PrayerForm() {
       const res = await fetch("/api/prayer", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          ...form,
+          website: honeypot,
+          cf_turnstile_response: turnstileToken,
+        }),
       });
 
       if (!res.ok) {
@@ -50,9 +60,12 @@ export default function PrayerForm() {
 
       setStatus("success");
       setForm(initialState);
+      setHoneypot("");
+      setTurnstileToken("");
     } catch (err: unknown) {
       setStatus("error");
       setErrorMsg(err instanceof Error ? err.message : "Something went wrong.");
+      turnstileRef.current?.reset();
     }
   };
 
@@ -72,6 +85,20 @@ export default function PrayerForm() {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+      {/* Honeypot — hidden from humans, filled by bots */}
+      <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", top: "-9999px" }}>
+        <label htmlFor="website">Website</label>
+        <input
+          type="text"
+          id="website"
+          name="website"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
       <div className="flex flex-col gap-1.5">
         <label className="text-xs tracking-widest uppercase" style={{ color: "var(--muted-text)" }}>
           Who is this prayer for?
@@ -130,6 +157,16 @@ export default function PrayerForm() {
         </span>
       </label>
 
+      {TURNSTILE_SITE_KEY && (
+        <Turnstile
+          ref={turnstileRef}
+          siteKey={TURNSTILE_SITE_KEY}
+          onSuccess={(token) => setTurnstileToken(token)}
+          onExpire={() => setTurnstileToken("")}
+          onError={() => setTurnstileToken("")}
+        />
+      )}
+
       {status === "error" && (
         <p className="text-sm" style={{ color: "#c07070" }}>{errorMsg}</p>
       )}
@@ -138,7 +175,7 @@ export default function PrayerForm() {
         <button
           type="submit"
           className="submit-btn"
-          disabled={status === "submitting"}
+          disabled={status === "submitting" || (!!TURNSTILE_SITE_KEY && !turnstileToken)}
         >
           {status === "submitting" ? "Submitting…" : "Offer this prayer"}
         </button>

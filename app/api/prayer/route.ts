@@ -2,8 +2,43 @@ import { NextRequest, NextResponse } from "next/server";
 import { ensureTable, insertPrayer } from "@/lib/db";
 import { sendConfirmationEmail } from "@/lib/email";
 import { appendPrayerToSheet } from "@/lib/sheets";
+import { checkRateLimit } from "@/lib/rateLimit";
+
+async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
+  const secret = process.env.TURNSTILE_SECRET_KEY;
+  if (!secret) return true; // Skip when not configured (dev / direct API)
+
+  const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({ secret, response: token, remoteip: ip }),
+  });
+  const data = await res.json() as { success: boolean };
+  return data.success === true;
+}
 
 export async function POST(req: NextRequest) {
+  // 1. Rate limiting
+  const ip =
+    req.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
+    req.headers.get("x-real-ip") ??
+    "unknown";
+  const rateCheck = checkRateLimit(ip);
+  if (!rateCheck.allowed) {
+    return NextResponse.json(
+      { error: "Too many requests. Please wait before submitting again." },
+      { status: 429, headers: { "Retry-After": String(rateCheck.retryAfter) } }
+    );
+  }
+
+  // 2. Origin check — only enforced for browser requests (those that send an Origin header).
+  //    Direct API calls (AI agents, curl, etc.) don't send Origin and are allowed through.
+  const origin = req.headers.get("origin");
+  const allowedOrigin = process.env.ALLOWED_ORIGIN;
+  if (origin && allowedOrigin && origin !== allowedOrigin) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
   let body: unknown;
   try {
     body = await req.json();
@@ -16,6 +51,23 @@ export async function POST(req: NextRequest) {
   }
 
   const data = body as Record<string, unknown>;
+
+  // 3. Honeypot — silently fake success so bots don't know they were caught
+  if (data.website) {
+    return NextResponse.json(
+      { status: "received", id: "00000000-0000-0000-0000-000000000000", timestamp: new Date().toISOString() },
+      { status: 201 }
+    );
+  }
+
+  // 4. Turnstile verification — only for browser requests (Origin header present)
+  if (origin) {
+    const token = typeof data.cf_turnstile_response === "string" ? data.cf_turnstile_response : "";
+    const valid = await verifyTurnstile(token, ip);
+    if (!valid) {
+      return NextResponse.json({ error: "Bot verification failed. Please try again." }, { status: 403 });
+    }
+  }
 
   const prayer = typeof data.prayer === "string" ? data.prayer.trim() : "";
   const forWhom = typeof data.for_whom === "string" ? data.for_whom.trim() : "";
