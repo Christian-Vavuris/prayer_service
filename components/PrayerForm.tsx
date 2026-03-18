@@ -164,7 +164,7 @@ export default function PrayerForm() {
           onSuccess={(token) => setTurnstileToken(token)}
           onExpire={() => setTurnstileToken("")}
           onError={() => setTurnstileToken("")}
-          appearance="interaction-only"
+          options={{ appearance: "interaction-only" }}
         />
       )}
 
