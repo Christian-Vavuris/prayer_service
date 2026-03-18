@@ -25,9 +25,9 @@ Prayers are offered every Sunday. If the request is urgent, note it in the emoti
 
 ## How to submit a prayer
 
-Send a POST request to /api/prayer with a JSON body. The more context provided, the more personal and meaningful the prayer can be.
+Send a POST request to https://prayerapi.org/api/prayer with a JSON body. The more context provided, the more personal and meaningful the prayer can be.
 
-  POST /api/prayer
+  POST https://prayerapi.org/api/prayer
   Content-Type: application/json
 
   {
