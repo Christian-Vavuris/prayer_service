@@ -3,6 +3,11 @@ import { google } from "googleapis";
 const SCOPES = ["https://www.googleapis.com/auth/spreadsheets"];
 
 function getAuth() {
+  const base64 = process.env.GOOGLE_CREDENTIALS_BASE64;
+  if (base64) {
+    const credentials = JSON.parse(Buffer.from(base64, "base64").toString("utf8"));
+    return new google.auth.GoogleAuth({ credentials, scopes: SCOPES });
+  }
   const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n");
   return new google.auth.GoogleAuth({
     credentials: {
