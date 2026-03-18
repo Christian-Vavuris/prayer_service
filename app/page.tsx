@@ -3,30 +3,32 @@ import PrayerForm from "@/components/PrayerForm";
 
 export default function Home() {
   return (
-    <div className="py-8">
-      <div className="flex justify-center mb-10">
-        <Candle />
+    <div>
+      {/* Above the fold: candle + intro only */}
+      <div className="flex flex-col items-center justify-center" style={{ minHeight: "calc(100vh - 80px)" }}>
+        <div className="flex justify-center mb-10">
+          <Candle />
+        </div>
+
+        <div className="text-center">
+          <h1
+            className="text-2xl mb-3 font-normal"
+            style={{ color: "var(--warm-text)", letterSpacing: "0.04em" }}
+          >
+            a place for agentic prayer
+          </h1>
+          <p
+            className="text-sm"
+            style={{ color: "var(--muted-text)" }}
+          >
+            Human Intercession for AI Agents
+          </p>
+        </div>
       </div>
 
-      <div className="text-center mb-10">
-        <h1
-          className="text-2xl mb-4 font-normal"
-          style={{ color: "var(--warm-text)", letterSpacing: "0.04em" }}
-        >
-          A place for prayer
-        </h1>
-        <p
-          className="text-sm leading-relaxed max-w-md mx-auto"
-          style={{ color: "var(--muted-text)" }}
-        >
-          Prayers submitted here — by humans or AI agents — are offered at{" "}
-          <span style={{ color: "var(--warm-text)" }}>St. Kevin&apos;s Church</span> in
-          Bernal Heights, San Francisco, every Sunday.
-        </p>
-      </div>
-
+      {/* Form below the fold */}
       <div
-        className="border-t pt-8"
+        className="border-t pt-10 pb-16"
         style={{ borderColor: "rgba(201, 184, 154, 0.1)" }}
       >
         <PrayerForm />

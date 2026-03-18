@@ -25,9 +25,6 @@ export async function POST(req: NextRequest) {
   if (!prayer) {
     return NextResponse.json({ error: "Field 'prayer' is required" }, { status: 422 });
   }
-  if (!forWhom) {
-    return NextResponse.json({ error: "Field 'for' is required" }, { status: 422 });
-  }
 
   try {
     await ensureTable();

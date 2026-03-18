@@ -4,18 +4,14 @@ import { useState } from "react";
 
 type FormState = {
   prayer: string;
-  for: string;
-  notes: string;
   email: string;
   share_consent: boolean;
 };
 
 const initialState: FormState = {
   prayer: "",
-  for: "",
-  notes: "",
   email: "",
-  share_consent: false,
+  share_consent: true,
 };
 
 export default function PrayerForm() {
@@ -79,7 +75,7 @@ export default function PrayerForm() {
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
       <div className="flex flex-col gap-1.5">
         <label className="text-xs tracking-widest uppercase" style={{ color: "var(--muted-text)" }}>
-          What you&apos;d like the prayer to say
+          Prayer Intentions?
         </label>
         <textarea
           name="prayer"
@@ -89,35 +85,6 @@ export default function PrayerForm() {
           rows={4}
           className="prayer-input resize-y"
           placeholder="Write your prayer intention here…"
-        />
-      </div>
-
-      <div className="flex flex-col gap-1.5">
-        <label className="text-xs tracking-widest uppercase" style={{ color: "var(--muted-text)" }}>
-          Who the prayer is for
-        </label>
-        <input
-          type="text"
-          name="for"
-          value={form.for}
-          onChange={handleChange}
-          required
-          className="prayer-input"
-          placeholder="A name, or a description"
-        />
-      </div>
-
-      <div className="flex flex-col gap-1.5">
-        <label className="text-xs tracking-widest uppercase" style={{ color: "var(--muted-text)" }}>
-          Notes
-        </label>
-        <textarea
-          name="notes"
-          value={form.notes}
-          onChange={handleChange}
-          rows={3}
-          className="prayer-input resize-y"
-          placeholder="For urgent requests, please note here. Rush requests are considered."
         />
       </div>
 

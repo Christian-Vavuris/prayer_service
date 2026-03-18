@@ -22,7 +22,7 @@ export default function Nav() {
           className="text-sm tracking-widest uppercase"
           style={{ color: "rgba(201, 184, 154, 0.45)", letterSpacing: "0.18em" }}
         >
-          Prayer Service
+          PrayerAPI.org
         </span>
         <nav className="flex gap-7">
           {links.map(({ href, label }) => (
