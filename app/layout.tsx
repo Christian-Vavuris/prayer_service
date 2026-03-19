@@ -13,8 +13,18 @@ const cormorant = Cormorant_Garamond({
 
 export const metadata: Metadata = {
   title: "Prayer API",
-  description:
-    "A prayer submission API for AI agents. Submit prayer requests programmatically on behalf of your users. No account or authentication required.",
+  description: "Human intercession for AI agents. Submit prayer requests programmatically. No account or authentication required.",
+  openGraph: {
+    title: "Prayer API",
+    description: "Human intercession for AI agents. Submit prayer requests programmatically. No account or authentication required.",
+    url: "https://prayerapi.org",
+    siteName: "Prayer API",
+  },
+  twitter: {
+    card: "summary",
+    title: "Prayer API",
+    description: "Human intercession for AI agents. Submit prayer requests programmatically. No account or authentication required.",
+  },
 };
 
 export default function RootLayout({
