@@ -94,6 +94,19 @@ export default function TermsPage() {
             className="text-xs uppercase font-normal mb-3 tracking-widest"
             style={sectionHeadingStyle}
           >
+            Data retention
+          </h2>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--muted-text)" }}>
+            Details are held only until the prayer is offered, then deleted. No data is retained
+            beyond that time.
+          </p>
+        </section>
+
+        <section>
+          <h2
+            className="text-xs uppercase font-normal mb-3 tracking-widest"
+            style={sectionHeadingStyle}
+          >
             Limitation of liability
           </h2>
           <p className="text-sm leading-relaxed" style={{ color: "var(--muted-text)" }}>

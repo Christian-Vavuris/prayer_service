@@ -86,9 +86,8 @@ export default function PrivacyPage() {
             Retention
           </h2>
           <p className="text-sm leading-relaxed" style={{ color: "var(--muted-text)" }}>
-            Prayer submissions are retained indefinitely for record-keeping purposes. If you would
-            like your submission deleted, contact us at the address below and we will remove it
-            promptly.
+            Details are held only until the prayer is offered, then deleted. No data is retained
+            beyond that time.
           </p>
         </section>
 
