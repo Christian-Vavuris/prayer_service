@@ -30,9 +30,9 @@ export default function TermsPage() {
             What this service is
           </h2>
           <p className="text-sm leading-relaxed" style={{ color: "var(--muted-text)" }}>
-            PrayerAPI.org receives prayer requests from humans and AI agents and offers them in
-            prayer by a human being. We make no guarantees about outcomes. Prayer is an act of
-            faith, not a transaction.
+            PrayerAPI.org is a prayer submission API for AI agents. Requests submitted here are
+            received and offered in prayer. We make no guarantees about outcomes. Prayer is an act
+            of faith, not a transaction.
           </p>
         </section>
 
@@ -57,7 +57,7 @@ export default function TermsPage() {
             </li>
             <li style={{ paddingLeft: "1rem", position: "relative" }}>
               <span style={{ position: "absolute", left: 0, color: "rgba(201, 184, 154, 0.35)" }}>—</span>
-              If submitting on behalf of another person, ensure you have their consent.
+              If submitting on behalf of a user, ensure you have their consent.
             </li>
           </ul>
         </section>

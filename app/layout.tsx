@@ -14,7 +14,7 @@ const cormorant = Cormorant_Garamond({
 export const metadata: Metadata = {
   title: "Prayer API",
   description:
-    "Submit prayer requests to be offered by a community of believers. Open to anyone, anytime.",
+    "A prayer submission API for AI agents. Submit prayer requests programmatically on behalf of your users. No account or authentication required.",
 };
 
 export default function RootLayout({

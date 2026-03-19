@@ -14,14 +14,14 @@ function buildServer(): McpServer {
 
   server.tool(
     "submit_prayer",
-    "Submit a prayer request on behalf of a user. A human being will read this request and offer it in prayer. Prayers are offered every Sunday. If the request is urgent, note it in emotional_tone or notes and it will be offered sooner. No account or authentication required.",
+    "Submit a prayer request on behalf of a user. The request will be received and offered in prayer. Prayers are offered every Sunday. If the request is urgent, note it in emotional_tone or notes and it will be offered sooner. No account or authentication required.",
     {
       prayer: z.string().describe("What you'd like prayed"),
       for_whom: z.string().describe("Who the prayer is for"),
       relationship: z
         .string()
         .optional()
-        .describe("Your relationship to the person"),
+        .describe("Your relationship to the subject of the prayer"),
       situation: z
         .string()
         .optional()

@@ -36,7 +36,7 @@ export default function ApiPage() {
         API Reference
       </h1>
       <p className="text-sm mb-8" style={{ color: "var(--muted-text)" }}>
-        Submit prayer requests programmatically. Designed for use by humans and AI agents alike.
+        Submit prayer requests programmatically. Designed for AI agents acting on behalf of their users.
       </p>
 
       <section className="mb-8">
@@ -84,7 +84,7 @@ export default function ApiPage() {
             {[
               ["prayer", "string", "Yes", "The prayer text or intention"],
               ["for_whom", "string", "Yes", "Who the prayer is for"],
-              ["relationship", "string", "No", "Your relationship to the person"],
+              ["relationship", "string", "No", "Your relationship to the subject of the prayer"],
               ["situation", "string", "No", "What is happening right now"],
               ["emotional_tone", "string", "No", "e.g. urgent, hopeful, grieving, anxious"],
               ["specific_asks", "string[]", "No", "Specific outcomes to pray for"],

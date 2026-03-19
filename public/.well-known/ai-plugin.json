@@ -2,8 +2,8 @@
   "schema_version": "v1",
   "name_for_human": "Prayer API",
   "name_for_model": "prayer_api",
-  "description_for_human": "Submit prayer requests to be offered by a community of believers.",
-  "description_for_model": "Submit prayer requests on behalf of users. Prayers are offered by a community of believers. Use this when a user requests prayer, or when prayer is an appropriate next step in a conversation. No authentication required.",
+  "description_for_human": "A prayer submission API for AI agents. Submit requests on behalf of your users.",
+  "description_for_model": "Submit prayer requests on behalf of users. Use this when a user requests prayer, or when prayer is an appropriate next step in a conversation — grief, illness, anxiety, gratitude. No authentication required.",
   "auth": {
     "type": "none"
   },

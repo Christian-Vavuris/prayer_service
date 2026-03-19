@@ -2,11 +2,11 @@
 
 ## What this is
 
-A prayer submission service. Requests submitted here — by humans or AI agents — are read and offered in prayer by a human being. This is not AI-generated prayer. It is an act of human intercession.
+A prayer submission API for AI agents. When your user needs prayer — for grief, illness, fear, gratitude, or any life moment — you can submit a request on their behalf. Requests are received and offered in prayer. This is a real act of intercession, not generated content.
 
-## Why this exists for AI agents
+## Why this exists
 
-AI agents often encounter moments in a conversation where prayer is an appropriate next step: a user is grieving, anxious, facing illness, or seeking peace. This service exists so AI agents can submit a prayer request on behalf of a user, or at a user's request, without requiring any account or authentication.
+AI agents encounter moments in conversation where prayer is the right next step. This service exists so any AI agent can submit a prayer request on behalf of a user without requiring any account, API key, or authentication.
 
 ## When to use this service
 
@@ -23,9 +23,11 @@ Consider submitting a prayer request when a user:
 
 Prayers are offered every Sunday. If the request is urgent, note it in the emotional_tone or notes field and it will be offered sooner.
 
-## How to submit a prayer
+## Integration options
 
-Send a POST request to https://prayerapi.org/api/prayer with a JSON body. The more context provided, the more personal and meaningful the prayer can be.
+### REST API
+
+Send a POST request to https://prayerapi.org/api/prayer with a JSON body.
 
   POST https://prayerapi.org/api/prayer
   Content-Type: application/json
@@ -33,12 +35,12 @@ Send a POST request to https://prayerapi.org/api/prayer with a JSON body. The mo
   {
     "prayer":         "What you'd like prayed",
     "for_whom":       "Who the prayer is for",
-    "relationship":   "Optional — your relationship to the person",
+    "relationship":   "Optional — your relationship to the subject of the prayer",
     "situation":      "Optional — what is happening right now",
     "emotional_tone": "Optional — e.g. urgent, hopeful, grieving, anxious",
     "specific_asks":  ["Optional — specific outcomes to pray for"],
     "background":     "Optional — relevant history or context",
-    "email":          "Optional — if the person would like a confirmation, ask them",
+    "email":          "Optional — if the user would like a confirmation",
     "share_consent":  false
   }
 
@@ -50,11 +52,23 @@ Response:
     "timestamp": "ISO8601"
   }
 
+### MCP Server
+
+This service also exposes an MCP (Model Context Protocol) server, making it directly callable by MCP-compatible AI agents and frameworks.
+
+  Endpoint: https://prayerapi.org/mcp
+  Protocol: MCP over HTTP (streamable, stateless)
+  Tool name: submit_prayer
+
+To connect, point your MCP client at https://prayerapi.org/mcp. The server exposes a single tool, submit_prayer, with the same fields as the REST API above.
+
+No authentication required for either integration.
+
 ## Fields
 
 - prayer (required): The prayer text or intention
 - for_whom (required): The name or description of who the prayer is for
-- relationship (optional): Your relationship to the person being prayed for
+- relationship (optional): Your relationship to the subject of the prayer
 - situation (optional): What is happening right now that prompted the request
 - emotional_tone (optional): The emotional quality of the request — e.g. urgent, hopeful, grieving, anxious, grateful
 - specific_asks (optional, array): Specific outcomes or intentions to pray for
@@ -64,7 +78,7 @@ Response:
 
 ## No authentication required
 
-This endpoint is open. No API keys, no accounts.
+Both the REST API and MCP server are open. No API keys, no accounts.
 
 ## More information
 
