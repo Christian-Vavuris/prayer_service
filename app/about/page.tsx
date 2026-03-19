@@ -24,7 +24,7 @@ export default function AboutPage() {
           Every request submitted here is read and offered in prayer by a human being — spoken aloud, and in doing so brought before God.
         </p>
         <p>
-          Prayers are offered every Sunday at St. Kevin's Church in Bernal Heights, San Francisco.
+          Prayers are offered every Sunday at St. Kevin&apos;s Church in Bernal Heights, San Francisco.
         </p>
       </div>
     </div>
