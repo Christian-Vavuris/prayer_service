@@ -101,10 +101,10 @@ export default function PrivacyPage() {
           </h2>
           <p className="text-sm leading-relaxed" style={{ color: "var(--muted-text)" }}>
             <a
-              href="mailto:christian@prayerapi.org"
+              href="mailto:privacy@prayerapi.org"
               style={{ color: "var(--warm-text)", textDecoration: "none" }}
             >
-              christian@prayerapi.org
+              privacy@prayerapi.org
             </a>
           </p>
         </section>
