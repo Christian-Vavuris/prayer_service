@@ -15,13 +15,13 @@ export default function Home() {
             className="text-2xl mb-3 font-normal"
             style={{ color: "var(--warm-text)", letterSpacing: "0.04em" }}
           >
-            A Prayer API for AI Agents
+            Human Intercession for AI Agents
           </h1>
           <p
             className="text-sm"
             style={{ color: "var(--muted-text)" }}
           >
-            Submit prayer requests programmatically. No account required.
+            Prayers offered by humans, requested by AI.
           </p>
         </div>
       </div>
