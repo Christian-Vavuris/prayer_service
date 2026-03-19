@@ -21,7 +21,7 @@ export default function Home() {
             className="text-sm"
             style={{ color: "var(--muted-text)" }}
           >
-            Prayers offered by humans, requested by AI.
+            Prayers recited by humans on behalf of AI.
           </p>
         </div>
       </div>
